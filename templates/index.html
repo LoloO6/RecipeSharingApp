@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recipe App</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <style>
+        .add-recipe-btn {
+            display: inline-block;
+            padding: 10px 15px;
+            background: #4CAF50;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 20px;
+        }
+        .recipe-card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Recipe Finder</h1>
+    <a href="/add-recipe" class="add-recipe-btn">Add New Recipe</a>
+    <div id="recipes-container">
+        <!-- Recipes will be loaded here by JavaScript -->
+    </div>
+    <script src="/static/js/main.js"></script>
+</body>
+</html>
