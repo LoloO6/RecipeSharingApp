@@ -3,29 +3,57 @@
 <head>
     <title>Recipe App</title>
     <link rel="stylesheet" href="/static/css/style.css">
-    <style>
-        .add-recipe-btn {
-            display: inline-block;
-            padding: 10px 15px;
-            background: #4CAF50;
-            color: white;
-            text-decoration: none;
-            margin-bottom: 20px;
-        }
-        .recipe-card {
-            border: 1px solid #ddd;
-            padding: 15px;
-            margin-bottom: 15px;
-            border-radius: 5px;
-        }
-    </style>
 </head>
 <body>
-    <h1>Recipe Finder</h1>
-    <a href="/add-recipe" class="add-recipe-btn">Add New Recipe</a>
-    <div id="recipes-container">
-        <!-- Recipes will be loaded here by JavaScript -->
+    <!-- Slideshow Background -->
+    <div class="slideshow">
+        <div class="slide active" style="background-image: url('/static/images/cookies.jpg');"></div>
+        <div class="slide" style="background-image: url('/static/images/food.jpeg');"></div>
+        <div class="slide" style="background-image: url('/static/images/stirfry.jpg');"></div>
     </div>
+
+    <div class="container">
+        <h1>Recipe Finder</h1>
+        <a href="/add-recipe" class="add-recipe-btn">Add New Recipe</a>
+
+        <div class="search-container">
+    <input type="text" id="search-input" placeholder="Search by name...">
+
+    <div class="ingredient-filters">
+        <h3>Filter by Ingredients:</h3>
+        <div class="ingredient-checkboxes">
+        </div>
+    </div>
+
+    <button id="search-btn">Search</button>
+</div>
+
+        <div id="recipes-container">
+            {% for recipe in recipes %}
+            <div class="recipe-card">
+                <a href="/recipe/{{ recipe['id'] }}" class="recipe-link">
+                    <div class="recipe-image-container">
+                        <img src="{{ recipe['image_url'] }}" alt="{{ recipe['name'] }}" class="recipe-image">
+                    </div>
+                    <h2>{{ recipe['name'] }}</h2>
+                </a>
+                <div class="recipe-meta">
+                    <p><strong>Prep Time:</strong> {{ recipe['prep_time'] }} mins</p>
+                    <p><strong>Cook Time:</strong> {{ recipe['cook_time'] }} mins</p>
+                    <p><strong>Servings:</strong> {{ recipe['servings'] }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Image Modal -->
+    <div id="recipeImageModal" class="recipe-image-modal">
+        <span class="close-recipe-modal">&times;</span>
+        <img class="modal-recipe-image" id="expandedRecipeImage">
+    </div>
+
     <script src="/static/js/main.js"></script>
+    <script src="/static/js/slideshow.js"></script>
 </body>
 </html>
